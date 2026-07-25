@@ -8,24 +8,24 @@ This project demonstrates a production-inspired Blue-Green Deployment strategy o
 
 ## Architecture
 
-                    Internet
-                        │
+                    Internet                        
+                        │                         
                         ▼
           ┌─────────────────────────┐
-          │ Application Load Balancer│
+          │ Application Load Balancer│                     
           └───────────┬─────────────┘
-                      │
-         ┌────────────┴────────────┐
+                      │                                  
+         ┌────────────┴────────────┐                        
+         │                         │               
+         ▼                         ▼          
+   Blue Target Group         Green Target Group             
+   (Weight 50)               (Weight 50)                          
          │                         │
-         ▼                         ▼
-   Blue Target Group         Green Target Group
-   (Weight 50)               (Weight 50)
-         │                         │
-     ┌───┴───┐                 ┌───┴───┐
-     ▼       ▼                 ▼       ▼
- Blue EC2-1 Blue EC2-2     Green EC2-1 Green EC2-2
-   AZ-1a      AZ-1b          AZ-1a       AZ-1b
-
+     ┌───┴───┐                 ┌───┴───┐                     
+     ▼       ▼                 ▼       ▼             
+ Blue EC2-1 Blue EC2-2     Green EC2-1 Green EC2-2           
+   AZ-1a      AZ-1b          AZ-1a       AZ-1b                              
+                                                               
 - Internet-facing Application Load Balancer
 - Blue Environment (2 EC2 Instances)
 - Green Environment (2 EC2 Instances)
